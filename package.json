@@ -4,7 +4,9 @@
   "description": "JS project boilerplate",
   "main": "ind.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node buildScripts/srcServer.js",
+    "wip"  : " lt --port 3000 --subdomain manishsaraan"
   },
   "repository": {
     "type": "git",
