@@ -3,6 +3,7 @@ import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import WebpackMd5Hash from 'webpack-md5-hash';
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import config from './api/config';
 export default {
   devtool: 'source-map',
   entry: {
@@ -40,6 +41,8 @@ export default {
         minifyCSS: true,
         minifyURLs: true
       },
+      inject :true,
+      trackJSToken : config.trackJSToken
     }),
     //eliminate duplicate plugins
     new webpack.optimize.DedupePlugin(),
