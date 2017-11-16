@@ -1,19 +1,27 @@
 import webpack from 'webpack';
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import WebpackMd5Hash from 'webpack-md5-hash';
 
 export default {
   devtool: 'source-map',
-  entry: [
-    path.resolve(__dirname, 'src/index')
-  ],
+  entry: {
+    vendor: path.resolve(__dirname, 'src/vendor'),
+    main: path.resolve(__dirname, 'src/index')
+  },
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: '[name].[chunkhash].js'
   },
   plugins: [ 
+    // Hash the files using MD5 so that their names change when the content changes.
+    new WebpackMd5Hash(),
+    //chunking files
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
+    }),
     //adding index file which includes bundle.js
     new HtmlWebpackPlugin({
       template : 'src/index.html',
